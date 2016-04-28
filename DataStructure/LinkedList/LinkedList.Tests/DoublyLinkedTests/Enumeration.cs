@@ -6,7 +6,7 @@ namespace DoublyLinkedList.Tests
     public class Enumeration
     {
         [Test]
-        public void Enumerate_Empty()
+        public void EnumerateEmpty()
         {
             LinkedList<int> list = new LinkedList<int>();
             foreach(int value in list)
@@ -15,8 +15,8 @@ namespace DoublyLinkedList.Tests
             }
         }
 
-        [Test, TestCaseSource("Enumeration_Success_Cases")]
-        public void Enumerate_Various(int[] testCase)
+        [Test, TestCaseSource("EnumerationSuccessCases")]
+        public void EnumerateVarious(int[] testCase)
         {
             LinkedList<int> list = new LinkedList<int>();
             foreach (int value in testCase)
@@ -41,8 +41,8 @@ namespace DoublyLinkedList.Tests
             }
         }
 
-        [Test, TestCaseSource("Enumeration_Success_Cases")]
-        public void Enumerate_Raw_Various(int[] testCase)
+        [Test, TestCaseSource("EnumerationSuccessCases")]
+        public void EnumerateRawVarious(int[] testCase)
         {
             LinkedList<int> list = new LinkedList<int>();
             foreach (int value in testCase)
@@ -70,8 +70,8 @@ namespace DoublyLinkedList.Tests
             }
         }
 
-        [Test, TestCaseSource("Enumeration_Success_Cases")]
-        public void Enumerate_Backwards_Raw_Various(int[] testCase)
+        [Test, TestCaseSource("EnumerationSuccessCases")]
+        public void EnumerateBackwardsRawVarious(int[] testCase)
         {
             LinkedList<int> list = new LinkedList<int>();
             foreach (int value in testCase)
@@ -93,7 +93,7 @@ namespace DoublyLinkedList.Tests
         }
 
 
-        static object[] Enumeration_Success_Cases =
+        static object[] EnumerationSuccessCases =
                      {
                             new int[] { 0 }, 
                             new int[] { 0, 1 }, 

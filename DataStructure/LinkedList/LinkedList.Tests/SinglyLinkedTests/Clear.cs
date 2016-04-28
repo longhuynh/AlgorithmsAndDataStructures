@@ -6,7 +6,7 @@ namespace LinkedList.Tests
     public class Clear
     {
         [Test]
-        public void Clear_Empty()
+        public void ClearEmpty()
         {
             LinkedList<int> list = new LinkedList<int>();
 
@@ -21,8 +21,8 @@ namespace LinkedList.Tests
             Assert.AreEqual(0, list.Count);
         }
 
-        [Test, TestCaseSource("Clear_Success_Cases")]
-        public void Clear_VariousItems(int[] testCase)
+        [Test, TestCaseSource("ClearSuccessCases")]
+        public void ClearVariousItems(int[] testCase)
         {
             LinkedList<int> list = new LinkedList<int>();
             foreach (int value in testCase)
@@ -41,7 +41,7 @@ namespace LinkedList.Tests
             Assert.AreEqual(0, list.Count);
         }
 
-        static object[] Clear_Success_Cases =
+        static object[] ClearSuccessCases =
                      {
                             new int[] { 0 }, 
                             new int[] { 0, 1 }, 

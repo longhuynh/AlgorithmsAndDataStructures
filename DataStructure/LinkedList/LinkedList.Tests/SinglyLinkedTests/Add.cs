@@ -6,8 +6,8 @@ namespace LinkedList.Tests
     [TestFixture]
     public class Add
     {
-        [Test, TestCaseSource("Add_Success_Cases")]
-        public void Add_Raw_Value_Success_Cases(int[] testCase)
+        [Test, TestCaseSource("AddSuccessCases")]
+        public void AddRawValueSuccessCases(int[] testCase)
         {
             LinkedList<int> list = new LinkedList<int>();
             foreach (int value in testCase)
@@ -34,8 +34,8 @@ namespace LinkedList.Tests
             }
         }
 
-        [Test, TestCaseSource("Add_Success_Cases")]
-        public void AddFirst_Node_Value_Success_Cases(int[] testCase)
+        [Test, TestCaseSource("AddSuccessCases")]
+        public void AddFirstNodeValueSuccessCases(int[] testCase)
         {
             LinkedList<int> list = new LinkedList<int>();
             foreach (int value in testCase)
@@ -62,8 +62,8 @@ namespace LinkedList.Tests
             }
         }
 
-        [Test, TestCaseSource("Add_Success_Cases")]
-        public void AddLast_Raw_Value_Success_Cases(int[] testCase)
+        [Test, TestCaseSource("AddSuccessCases")]
+        public void AddLastRawValueSuccessCases(int[] testCase)
         {
             LinkedList<int> list = new LinkedList<int>();
             foreach (int value in testCase)
@@ -88,8 +88,8 @@ namespace LinkedList.Tests
             }
         }
 
-        [Test, TestCaseSource("Add_Success_Cases")]
-        public void AddLast_Node_Value_Success_Cases(int[] testCase)
+        [Test, TestCaseSource("AddSuccessCases")]
+        public void AddLastNodeValueSuccessCases(int[] testCase)
         {
             LinkedList<int> list = new LinkedList<int>();
             foreach (int value in testCase)
@@ -115,7 +115,7 @@ namespace LinkedList.Tests
         }
 
 
-        static object[] Add_Success_Cases =
+        static object[] AddSuccessCases =
                      {
                             new int[] { 0 }, 
                             new int[] { 0, 1 }, 

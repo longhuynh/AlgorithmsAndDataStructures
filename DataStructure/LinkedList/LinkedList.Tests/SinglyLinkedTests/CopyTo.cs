@@ -7,15 +7,15 @@ namespace LinkedList.Tests
     public class CopyTo
     {
         [Test]
-        public void CopyTo_Empty_List()
+        public void CopyToEmptyList()
         {
             LinkedList<int> list = new LinkedList<int>();
             int[] array = new int[1];
             list.CopyTo(array, 0);
         }
 
-        [Test, TestCaseSource("CopyTo_Success_Cases")]
-        public void CopyTo_Zero_Index(int[] testCase)
+        [Test, TestCaseSource("CopyToSuccessCases")]
+        public void CopyToZeroIndex(int[] testCase)
         {
             LinkedList<int> list = new LinkedList<int>();
             foreach (int data in testCase)
@@ -29,8 +29,8 @@ namespace LinkedList.Tests
             Assert.AreEqual(testCase, newArray, "The resulting array was not correct");
         }
 
-        [Test, TestCaseSource("CopyTo_Success_Cases")]
-        public void CopyTo_Nth_Index(int[] testCase)
+        [Test, TestCaseSource("CopyToSuccessCases")]
+        public void CopyToNthIndex(int[] testCase)
         {
             LinkedList<int> list = new LinkedList<int>();
             foreach (int data in testCase)
@@ -51,7 +51,7 @@ namespace LinkedList.Tests
         }
 
 
-        static object[] CopyTo_Success_Cases =
+        static object[] CopyToSuccessCases =
                         {
                             new int[] { 0 }, 
                             new int[] { 0, 1 }, 

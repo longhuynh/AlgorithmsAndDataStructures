@@ -7,7 +7,7 @@ namespace DoublyLinkedList.Tests
     public class Remove
     {
         [Test]
-        public void RemoveFirstLast_Empty_Lists()
+        public void RemoveFirstLastEmptyLists()
         {
             LinkedList<int> list = new LinkedList<int>();
             Assert.AreEqual(0, list.Count);
@@ -26,7 +26,7 @@ namespace DoublyLinkedList.Tests
         }
 
         [Test]
-        public void RemoveFirstLast_One_Node()
+        public void RemoveFirstLastOneNode()
         {
             LinkedList<int> list = new LinkedList<int>();
 
@@ -44,7 +44,7 @@ namespace DoublyLinkedList.Tests
         }
 
         [Test]
-        public void RemoveFirstLast_Two_Node()
+        public void RemoveFirstLastTwoNode()
         {
             LinkedList<int> list = new LinkedList<int>();
 
@@ -65,7 +65,7 @@ namespace DoublyLinkedList.Tests
 
 
         [Test]
-        public void RemoveFirst_Ten_Nodes()
+        public void RemoveFirstTenNodes()
         {
             LinkedList<int> list = new LinkedList<int>();
             for (int i = 0; i < 10; i++)
@@ -85,7 +85,7 @@ namespace DoublyLinkedList.Tests
         }
 
         [Test]
-        public void RemoveLast_Ten_Nodes()
+        public void RemoveLastTenNodes()
         {
             LinkedList<int> list = new LinkedList<int>();
             for (int i = 0; i < 10; i++)
@@ -104,8 +104,8 @@ namespace DoublyLinkedList.Tests
             Assert.IsNull(list.Tail);
         }
 
-        [Test, TestCaseSource("Remove_Missing_Cases")]
-        public void Remove_Missing(int[] testData, int value)
+        [Test, TestCaseSource("RemoveMissingCases")]
+        public void RemoveMissing(int[] testData, int value)
         {
             LinkedList<int> list = new LinkedList<int>();
             foreach (int data in testData)
@@ -117,8 +117,8 @@ namespace DoublyLinkedList.Tests
             Assert.AreEqual(testData.Length, list.Count, "The expected list count was incorrect");
         }
 
-        [Test, TestCaseSource("Remove_Found_Cases")]
-        public void Remove_Found(int[] testData, int value)
+        [Test, TestCaseSource("RemoveFoundCases")]
+        public void RemoveFound(int[] testData, int value)
         {
             LinkedList<int> list = new LinkedList<int>();
             foreach (int data in testData)
@@ -130,7 +130,7 @@ namespace DoublyLinkedList.Tests
             Assert.AreEqual(testData.Length - 1, list.Count, "The expected list count was incorrect");
         }
 
-        static object[] Remove_Missing_Cases =
+        static object[] RemoveMissingCases =
                      {
                        new object[] { new int[] { 0 }, 10 },
                        new object[] { new int[] { 0, 1 }, 10 },
@@ -138,7 +138,7 @@ namespace DoublyLinkedList.Tests
                        new object[] { new int[] { 0, 1, 2, 3 }, 10 }
                      };
 
-        static object[] Remove_Found_Cases =
+        static object[] RemoveFoundCases =
                      {
                        new object[] { new int[] { 10 }, 10 },
                        new object[] { new int[] { 10, 0 }, 10 },

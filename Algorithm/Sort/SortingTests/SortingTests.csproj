@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{2EEBB9D0-3B12-4443-BCAD-DE8980FCE546}</ProjectGuid>
+    <ProjectGuid>{00BDD253-9D71-461D-A532-EB90E22E629A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>LinkedList.Tests</RootNamespace>
-    <AssemblyName>LinkedList.Tests</AssemblyName>
+    <RootNamespace>SortingTests</RootNamespace>
+    <AssemblyName>SortingTests</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,7 +40,6 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="nunit.framework, Version=2.5.10.11092, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\nunit\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="nunit.util, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
@@ -60,28 +59,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DoublyLinkedTests\Add.cs" />
-    <Compile Include="DoublyLinkedTests\Clear.cs" />
-    <Compile Include="DoublyLinkedTests\CopyTo.cs" />
-    <Compile Include="DoublyLinkedTests\Enumeration.cs" />
-    <Compile Include="DoublyLinkedTests\Find.cs" />
-    <Compile Include="DoublyLinkedTests\Remove.cs" />
-    <Compile Include="SinglyLinkedTests\Add.cs" />
-    <Compile Include="SinglyLinkedTests\Clear.cs" />
-    <Compile Include="SinglyLinkedTests\CopyTo.cs" />
-    <Compile Include="SinglyLinkedTests\Enumeration.cs" />
-    <Compile Include="SinglyLinkedTests\Find.cs" />
+    <Compile Include="BubbleSortTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SinglyLinkedTests\Remove.cs" />
+    <Compile Include="SortingCorrectnessTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DoublyLinkedList\DoublyLinkedList.csproj">
-      <Project>{DA7F9F47-B813-4099-94E0-1F0843194302}</Project>
-      <Name>DoublyLinkedList</Name>
+    <ProjectReference Include="..\Sorting\Sorting.csproj">
+      <Project>{0CEAFD73-29E8-4E5F-9588-3D6D3F486C84}</Project>
+      <Name>Sorting %28Sorting\Sorting%29</Name>
     </ProjectReference>
-    <ProjectReference Include="..\LinkedList\LinkedList.csproj">
-      <Project>{4D47603C-6AC4-4D95-B1A6-1E6BE7DC7341}</Project>
-      <Name>LinkedList</Name>
+    <ProjectReference Include="..\Tracker\Tracker.csproj">
+      <Project>{4695BA37-9807-4265-BAAF-E9D1404F8408}</Project>
+      <Name>Tracker</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

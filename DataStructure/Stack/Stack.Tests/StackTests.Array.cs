@@ -5,11 +5,11 @@ using System;
 namespace Stack.Tests
 {
     [TestFixture]
-    public class StackTests_Array
+    public class StackTestsArray
     {
         [Test]
-        [TestCaseSource("Push_TestData")]
-        public void Stack_Success_Cases(int[] testData)
+        [TestCaseSource("PushTestData")]
+        public void StackSuccessCases(int[] testData)
         {
             Stack<int> stack = new Stack<int>();
 
@@ -43,8 +43,8 @@ namespace Stack.Tests
         }
 
         [Test]
-        [TestCaseSource("Push_TestData")]
-        public void Clear_Success_Cases(int[] testData)
+        [TestCaseSource("PushTestData")]
+        public void ClearSuccessCases(int[] testData)
         {
             Stack<int> s = new Stack<int>();
 
@@ -67,7 +67,7 @@ namespace Stack.Tests
 
         [Test]
         [ExpectedException(typeof(InvalidOperationException))]
-        public void Pop_From_Empty_Throws()
+        public void PopFromEmptyThrows()
         {
             Stack<int> s = new Stack<int>();
             s.Pop();
@@ -75,7 +75,7 @@ namespace Stack.Tests
 
         [Test]
         [ExpectedException(typeof(InvalidOperationException))]
-        public void Pop_From_Empty_Throws_After_Push()
+        public void PopFromEmptyThrowsAfterPush()
         {
             Stack<int> s = new Stack<int>();
             s.Push(1);
@@ -85,7 +85,7 @@ namespace Stack.Tests
 
         [Test]
         [ExpectedException(typeof(InvalidOperationException))]
-        public void Peek_From_Empty_Throws()
+        public void PeekFromEmptyThrows()
         {
             Stack<int> s = new Stack<int>();
             s.Peek();
@@ -93,7 +93,7 @@ namespace Stack.Tests
 
         [Test]
         [ExpectedException(typeof(InvalidOperationException))]
-        public void Peek_From_Empty_Throws_After_Push()
+        public void PeekFromEmptyThrowsAfterPush()
         {
             Stack<int> s = new Stack<int>();
             s.Push(1);
@@ -101,7 +101,7 @@ namespace Stack.Tests
             s.Peek();
         }
 
-        object[] Push_TestData = new[]
+        object[] PushTestData = new[]
                                  {
                                      new int[0],
                                      new [] { 0 },
