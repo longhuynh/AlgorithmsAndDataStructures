@@ -9,7 +9,6 @@ namespace Sorting
         public void Sort(T[] items)
         {
             bool swapped;
-            int ik = 0;
             do
             {
                 swapped = false;
@@ -21,8 +20,6 @@ namespace Sorting
                         swapped = true;
                     }
                 }
-                ik++;
-                Console.Write(ik);
             } while (swapped);
         }
     }

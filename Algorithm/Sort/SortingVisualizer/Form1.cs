@@ -20,7 +20,7 @@ namespace SortingVisualizer
             comboBox1.Items.Add("Reversed");
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void ButtonExecuteClick(object sender, EventArgs e)
         {
             try
             {

@@ -11,7 +11,7 @@ namespace WpfStackDemo
     public partial class MainWindow : Window
     {
         Stack<UndoAction> undoOps = new Stack<UndoAction>();
-        Random _rng = new Random();
+        Random random = new Random();
 
         public MainWindow()
         {
@@ -21,7 +21,7 @@ namespace WpfStackDemo
         private Brush GetRandomBrush()
         {
             byte[] rgb = new byte[3];
-            _rng.NextBytes(rgb);
+            random.NextBytes(rgb);
 
             return new SolidColorBrush(Color.FromRgb(rgb[0], rgb[1], rgb[2]));
         }
