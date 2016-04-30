@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows.Forms;
-using System.Windows.Forms.DataVisualization.Charting;
 using Sorting;
 
 namespace SortingVisualizer
@@ -37,7 +36,8 @@ namespace SortingVisualizer
                     }
                     else
                     {
-                        MessageBox.Show(string.Format("The value could not be parsed as an integer: {0}", textBox1.Text));
+                        //MessageBox.Show(string.Format("The value could not be parsed as an integer: {0}", textBox1.Text));
+                        MessageBox.Show($"The value could not be parsed as an integer: {textBox1.Text}");
                     }
                 }
             }
@@ -47,10 +47,10 @@ namespace SortingVisualizer
             }
         }
 
-        int[] GetRandomPoints(uint count)
+        private int[] GetRandomPoints(uint count)
         {
-            Random r = new Random();
-            int[] points = new int[count];
+            var r = new Random();
+            var points = new int[count];
 
             for (uint i = 0; i < count; i++)
             {
@@ -65,9 +65,9 @@ namespace SortingVisualizer
             chart1.ResetAutoValues();
 
             int[] points;
-            switch(comboBox1.SelectedItem.ToString())
+            switch (comboBox1.SelectedItem.ToString())
             {
-            	case "Random":
+                case "Random":
                     points = GetRandomPoints(count);
                     break;
                 case "Sorted":
@@ -81,44 +81,44 @@ namespace SortingVisualizer
                     break;
             }
 
-            ISorter<int>[] algorithms = new ISorter<int>[]
-                                        {
-                                            new BubbleSort<int>(),
-                                            new InsertionSort<int>(),
-                                            new MergeSort<int>(),
-                                            new SelectionSort<int>(),
-                                            new QuickSort<int>(),
-                                        };
-
-            foreach (ISorter<int> algorithm in algorithms)
+            ISorter<int>[] algorithms =
             {
-                this.Text = string.Format("Running algorithm: {0}", algorithm.GetType().Name);
+                new BubbleSort<int>(),
+                new InsertionSort<int>(),
+                new MergeSort<int>(),
+                new SelectionSort<int>(),
+                new QuickSort<int>()
+            };
 
-                int[] cloned = new int[points.Length];
+            foreach (var algorithm in algorithms)
+            {
+                Text = $"Running algorithm: {algorithm.GetType().Name}";
+
+                var cloned = new int[points.Length];
                 Array.Copy(points, cloned, points.Length);
 
                 algorithm.Sort(cloned);
 
-                Series series = chart1.Series.Add(algorithm.GetType().Name);
+                var series = chart1.Series.Add(algorithm.GetType().Name);
 
                 if (cbOperation.SelectedItem.ToString() == "Comparisons")
                 {
-                    series.Points.Add(new double[] { algorithm.Comparisons });
+                    series.Points.Add(algorithm.Comparisons);
                 }
                 else
                 {
-                    series.Points.Add(new double[] { algorithm.Swaps });
+                    series.Points.Add(algorithm.Swaps);
                 }
             }
 
-            this.Text = string.Format("Ready");
+            Text = $"Ready";
         }
 
         private int[] GetSortedPoints(uint count)
         {
-            int[] points = new int[count];
+            var points = new int[count];
 
-            for (int i = 0; i < count; i++)
+            for (var i = 0; i < count; i++)
             {
                 points[i] = i;
             }
@@ -128,10 +128,10 @@ namespace SortingVisualizer
 
         private int[] GetReversedPoints(uint count)
         {
-            int[] points = new int[count];
+            var points = new int[count];
 
-            int current = 0;
-            for (int i = (int)count - 1; i >= 0; i--)
+            var current = 0;
+            for (var i = (int) count - 1; i >= 0; i--)
             {
                 points[current++] = i;
             }

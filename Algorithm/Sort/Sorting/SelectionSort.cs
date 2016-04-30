@@ -8,14 +8,10 @@ namespace Sorting
     {
         public void Sort(T[] items)
         {
-            int sortedRangeEnd = 0;
-
-            while (sortedRangeEnd < items.Length)
+            for (int sortedRangeEnd = 0; sortedRangeEnd < items.Length; sortedRangeEnd++)
             {
                 int nextIndex = FindIndexOfSmallestFromIndex(items, sortedRangeEnd);
                 Swap(items, sortedRangeEnd, nextIndex);
-
-                sortedRangeEnd++;
             }
         }
 

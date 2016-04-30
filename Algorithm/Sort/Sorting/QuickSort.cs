@@ -6,24 +6,27 @@ namespace Sorting
     public class QuickSort<T> : Tracker<T>, ISorter<T>
         where T : IComparable<T>
     {
+
+        readonly Random random = new Random();
+
         public void Sort(T[] items)
         {
-            quicksort(items, 0, items.Length - 1);
+            QuickSortPartition(items, 0, items.Length - 1);
         }
 
-        private void quicksort(T[] items, int left, int right)
+        private void QuickSortPartition(T[] items, int left, int right)
         {
             if (left < right)
             {
-                int pivotIndex = pivotRng.Next(left, right);
-                int newPivot = partition(items, left, right, pivotIndex);
+                int pivotIndex = random.Next(left, right);
+                int newPivot = Partition(items, left, right, pivotIndex);
 
-                quicksort(items, left, newPivot - 1);
-                quicksort(items, newPivot + 1, right);
+                QuickSortPartition(items, left, newPivot - 1);
+                QuickSortPartition(items, newPivot + 1, right);
             }
         }
 
-        private int partition(T[] items, int left, int right, int pivotIndex)
+        private int Partition(T[] items, int left, int right, int pivotIndex)
         {
             T pivotValue = items[pivotIndex];
 
@@ -43,7 +46,5 @@ namespace Sorting
             Swap(items, storeIndex, right);
             return storeIndex;
         }
-
-        Random pivotRng = new Random();
     }
 }

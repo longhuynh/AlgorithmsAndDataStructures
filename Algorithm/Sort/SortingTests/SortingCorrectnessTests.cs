@@ -7,18 +7,19 @@ namespace SortingTests
     [TestFixture]
     public class SortingCorrectnessTests
     {
-        public readonly ISorter<int>[] SortingTypes = {
-                new BubbleSort<int>(),
-                new InsertionSort<int>(),
-                new MergeSort<int>(),
-                new SelectionSort<int>(),
-                new QuickSort<int>(),
-            };
+        public readonly ISorter<int>[] SortingTypes =
+        {
+            new BubbleSort<int>(),
+            new InsertionSort<int>(),
+            new MergeSort<int>(),
+            new SelectionSort<int>(),
+            new QuickSort<int>(),
+        };
 
         [TestCaseSource("SortingTypes")]
         public void PreSorted(ISorter<int> sorter)
         {
-            int[] presorted = new[] { int.MinValue, 0, 1, 2, 3, 4, 5, 6, 7, int.MaxValue };
+            int[] presorted = new[] {int.MinValue, 0, 1, 2, 3, 4, 5, 6, 7, int.MaxValue};
             sorter.Sort(presorted);
 
             AssertArrayIsSorted(presorted);
@@ -27,7 +28,7 @@ namespace SortingTests
         [TestCaseSource("SortingTypes")]
         public void AllReversed(ISorter<int> sorter)
         {
-            int[] reversed = new[] { int.MaxValue, 7, 6, 5, 4, 3, 2, 1, 0, int.MinValue };
+            int[] reversed = {int.MaxValue, 7, 6, 5, 4, 3, 2, 1, 0, int.MinValue};
             sorter.Sort(reversed);
 
             AssertArrayIsSorted(reversed);
@@ -36,7 +37,7 @@ namespace SortingTests
         [TestCaseSource("SortingTypes")]
         public void SingleOutOfOrder(ISorter<int> sorter)
         {
-            int[] values = new[] { 1, 0, 2, 3, 4 };
+            int[] values = {3, 8, 2, 1, 5, 4, 6, 7};
             sorter.Sort(values);
 
             AssertArrayIsSorted(values);
@@ -45,7 +46,7 @@ namespace SortingTests
         [TestCaseSource("SortingTypes")]
         public void MultipleOutOfOrder(ISorter<int> sorter)
         {
-            int[] values = new[] { 4, 3, 1, 2 };
+            int[] values = {4, 3, 1, 2};
             sorter.Sort(values);
 
             AssertArrayIsSorted(values);
@@ -69,7 +70,7 @@ namespace SortingTests
         [TestCaseSource("SortingTypes")]
         public void EmptyDoesNotCompareOrSwap(ISorter<int> sorter)
         {
-            int[] empty = new int[] { };
+            int[] empty = {};
             sorter.Sort(empty);
         }
 

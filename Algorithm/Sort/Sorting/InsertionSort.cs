@@ -8,17 +8,13 @@ namespace Sorting
     {
         public void Sort(T[] items)
         {
-            int sortedRangeEndIndex = 1;
-
-            while (sortedRangeEndIndex < items.Length)
+            for (int sortedRangeEndIndex = 1; sortedRangeEndIndex < items.Length; sortedRangeEndIndex++)
             {
                 if (Compare(items[sortedRangeEndIndex], items[sortedRangeEndIndex - 1]) < 0)
                 {
                     int insertIndex = FindInsertionIndex(items, items[sortedRangeEndIndex]);
                     Insert(items, insertIndex, sortedRangeEndIndex);
                 }
-
-                sortedRangeEndIndex++;
             }
         }
 
