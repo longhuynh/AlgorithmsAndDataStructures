@@ -7,8 +7,7 @@ namespace SortingTests
     [TestFixture]
     public class SortingCorrectnessTests
     {
-        private readonly ISorter<int>[] SortingTypes = new ISorter<int>[]
-            {
+        public readonly ISorter<int>[] SortingTypes = {
                 new BubbleSort<int>(),
                 new InsertionSort<int>(),
                 new MergeSort<int>(),
@@ -56,11 +55,11 @@ namespace SortingTests
         public void RandomValuesSort(ISorter<int> sorter)
         {
             int[] items = new int[1000];
-            Random rng = new Random();
+            Random random = new Random();
 
             for (int i = 0; i < items.Length; i++)
             {
-                items[i] = rng.Next();
+                items[i] = random.Next();
             }
 
             sorter.Sort(items);
@@ -72,8 +71,6 @@ namespace SortingTests
         {
             int[] empty = new int[] { };
             sorter.Sort(empty);
-
-            // this should not have thrown
         }
 
 

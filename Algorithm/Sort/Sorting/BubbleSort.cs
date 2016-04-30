@@ -9,10 +9,11 @@ namespace Sorting
         public void Sort(T[] items)
         {
             bool swapped;
+            int times = 0;
             do
             {
                 swapped = false;
-                for (int i = 1; i < items.Length; i++)
+                for (int i = 1; i < items.Length - times; i++)
                 {
                     if (Compare(items[i - 1], items[i]) > 0)
                     {
@@ -20,6 +21,7 @@ namespace Sorting
                         swapped = true;
                     }
                 }
+                times++;
             } while (swapped);
         }
     }
