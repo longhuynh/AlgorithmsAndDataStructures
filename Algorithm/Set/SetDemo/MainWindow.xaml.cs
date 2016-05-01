@@ -1,16 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Set;
 
 namespace SetDemo
@@ -20,14 +11,14 @@ namespace SetDemo
     /// </summary>
     public partial class MainWindow : Window
     {
-        Set<Student> _men = new Set<Student>();
-        Set<Student> _women = new Set<Student>();
+        readonly Set<Student> men = new Set<Student>();
+        readonly Set<Student> women = new Set<Student>();
 
-        Set<Student> _reading = new Set<Student>();
-        Set<Student> _writing = new Set<Student>();
-        Set<Student> _arithmetic = new Set<Student>();
+        readonly Set<Student> reading = new Set<Student>();
+        readonly Set<Student> writing = new Set<Student>();
+        readonly Set<Student> arithmetic = new Set<Student>();
 
-        Dictionary<string, Set<Student>> allSets = new Dictionary<string, Set<Student>>();
+        readonly Dictionary<string, Set<Student>> allSets = new Dictionary<string, Set<Student>>();
 
         public MainWindow()
         {
@@ -36,22 +27,22 @@ namespace SetDemo
             Student john = new Student(3, "John", Gender.Male);
             Student mark = new Student(4, "Mark", Gender.Male);
             Student otherMark = new Student(5, "Mark", Gender.Male);
-            _men.AddRange(new Student[] { james, robert, john, mark, otherMark });
+            men.AddRange(new Student[] {james, robert, john, mark, otherMark});
 
             Student liz = new Student(6, "Elizabeth", Gender.Female);
             Student amy = new Student(7, "Amy", Gender.Female);
             Student eve = new Student(8, "Evelyn", Gender.Female);
-            _women.AddRange(new Student[] { liz, amy, eve });
+            women.AddRange(new Student[] {liz, amy, eve});
 
-            _reading.AddRange(new Student[] { james, robert, liz });
-            _writing.AddRange(new Student[] { robert, mark, amy, eve, liz });
-            _arithmetic.AddRange(new Student[] { john, mark, otherMark, amy });
+            reading.AddRange(new Student[] {james, robert, liz});
+            writing.AddRange(new Student[] {robert, mark, amy, eve, liz});
+            arithmetic.AddRange(new Student[] {john, mark, otherMark, amy});
 
-            allSets.Add("Men", _men);
-            allSets.Add("Women", _women);
-            allSets.Add("Reading", _reading);
-            allSets.Add("Writing", _writing);
-            allSets.Add("Arithmetic", _arithmetic);
+            allSets.Add("Men", men);
+            allSets.Add("Women", women);
+            allSets.Add("Reading", reading);
+            allSets.Add("Writing", writing);
+            allSets.Add("Arithmetic", arithmetic);
 
             InitializeComponent();
         }
@@ -70,7 +61,7 @@ namespace SetDemo
             operation.Items.Add("SYMETRIC DIFF");
         }
 
-        private void leftSet_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void LeftSetSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             leftMembers.Items.Clear();
 
@@ -80,7 +71,7 @@ namespace SetDemo
             }
         }
 
-        private void rightSet_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void RightSetSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             rightMembers.Items.Clear();
 
@@ -105,32 +96,33 @@ namespace SetDemo
             }
         }
 
-        private void evaluateButton_Click(object sender, RoutedEventArgs e)
+        private void EvaluateButtonClick(object sender, RoutedEventArgs e)
         {
             resultSet.Items.Clear();
             if (operation.SelectedItem != null)
             {
-                Set<Student> results = UpdateResultSet(GetSetByName(leftSet.SelectedItem.ToString()), GetSetByName(rightSet.SelectedItem.ToString()), operation.SelectedItem.ToString());
+                Set<Student> results = UpdateResultSet(GetSetByName(leftSet.SelectedItem.ToString()),
+                    GetSetByName(rightSet.SelectedItem.ToString()), operation.SelectedItem.ToString());
                 DisplaySetData(results, resultSet);
             }
         }
 
         private Set<Student> UpdateResultSet(Set<Student> left, Set<Student> right, string op)
         {
-            switch(op)
+            switch (op)
             {
                 case "UNION":
                     return left.Union(right);
-            	case "INTERSECTION":
+                case "INTERSECTION":
                     return left.Intersection(right);
                 case "DIFFERENCE":
                     return left.Difference(right);
                 case "SYMETRIC DIFF":
                     return left.SymmetricDifference(right);
                 default:
-                    Set<Student> resultSet = new Set<Student>();
-                    resultSet.Add(new Student(-1, "ERROR", Gender.Unknown));
-                    return resultSet;
+                    Set<Student> set = new Set<Student>();
+                    set.Add(new Student(-1, "ERROR", Gender.Unknown));
+                    return set;
             }
         }
     }

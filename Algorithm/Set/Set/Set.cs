@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace Set
 {
     public class Set<T> : IEnumerable<T>
-        where T: IComparable<T>
+        where T : IComparable<T>
     {
         private readonly List<T> items = new List<T>();
 
@@ -27,9 +27,9 @@ namespace Set
             items.Add(item);
         }
 
-        public void AddRange(IEnumerable<T> items)
+        public void AddRange(IEnumerable<T> enumerables)
         {
-            foreach (T item in items)
+            foreach (T item in enumerables)
             {
                 Add(item);
             }
@@ -43,9 +43,9 @@ namespace Set
             }
         }
 
-        private void AddRangeSkipDuplicates(IEnumerable<T> items)
+        private void AddRangeSkipDuplicates(IEnumerable<T> enumerables)
         {
-            foreach (T item in items)
+            foreach (T item in enumerables)
             {
                 AddSkipDuplicates(item);
             }
@@ -63,10 +63,7 @@ namespace Set
 
         public int Count
         {
-            get
-            {
-                return items.Count;
-            }
+            get { return items.Count; }
         }
 
         public Set<T> Union(Set<T> other)
