@@ -6,9 +6,6 @@ namespace Sorting
     public class QuickSort<T> : Tracker<T>, ISorter<T>
         where T : IComparable<T>
     {
-
-        readonly Random random = new Random();
-
         public void Sort(T[] items)
         {
             QuickSortPartition(items, 0, items.Length - 1);
@@ -18,7 +15,7 @@ namespace Sorting
         {
             if (left < right)
             {
-                int pivotIndex = random.Next(left, right);
+                int pivotIndex = (left + right)/2;
                 int newPivot = Partition(items, left, right, pivotIndex);
 
                 QuickSortPartition(items, left, newPivot - 1);

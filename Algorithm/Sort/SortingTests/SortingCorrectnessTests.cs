@@ -37,7 +37,7 @@ namespace SortingTests
         [TestCaseSource("SortingTypes")]
         public void SingleOutOfOrder(ISorter<int> sorter)
         {
-            int[] values = {3, 8, 2, 1, 5, 4, 6, 7};
+            int[] values = {3, 8, 2, 5, 1, 4, 6, 7};
             sorter.Sort(values);
 
             AssertArrayIsSorted(values);
