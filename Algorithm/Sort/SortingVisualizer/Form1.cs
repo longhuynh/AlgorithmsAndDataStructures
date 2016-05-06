@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Windows.Forms;
 using Sorting;
 
@@ -94,20 +95,29 @@ namespace SortingVisualizer
             {
                 Text = $"Running algorithm: {algorithm.GetType().Name}";
 
+                // Create new stopwatch.
+                Stopwatch stopwatch = new Stopwatch();
+                stopwatch.Start();
+
                 var cloned = new int[points.Length];
                 Array.Copy(points, cloned, points.Length);
-
+                
                 algorithm.Sort(cloned);
 
                 var series = chart1.Series.Add(algorithm.GetType().Name);
 
-                if (cbOperation.SelectedItem.ToString() == "Comparisons")
+                switch (cbOperation.SelectedItem.ToString())
                 {
-                    series.Points.Add(algorithm.Comparisons);
-                }
-                else
-                {
-                    series.Points.Add(algorithm.Swaps);
+                    case "Comparisons":
+                        series.Points.Add(algorithm.Comparisons);
+                        break;
+                    case "RunningTime":
+                        stopwatch.Stop();
+                        series.Points.Add(stopwatch.ElapsedMilliseconds);
+                        break;
+                    default:
+                        series.Points.Add(algorithm.Swaps);
+                        break;
                 }
             }
 

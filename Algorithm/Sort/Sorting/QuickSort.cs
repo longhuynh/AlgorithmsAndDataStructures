@@ -15,6 +15,7 @@ namespace Sorting
         {
             if (left < right)
             {
+                // Actually, pivotIndex is random index
                 int pivotIndex = (left + right)/2;
                 int newPivot = Partition(items, left, right, pivotIndex);
 
