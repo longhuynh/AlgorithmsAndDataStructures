@@ -10,8 +10,8 @@ namespace WpfStackDemo
     /// </summary>
     public partial class MainWindow : Window
     {
-        Stack<UndoAction> undoOps = new Stack<UndoAction>();
-        Random random = new Random();
+        private readonly Stack<UndoAction> undoOps = new Stack<UndoAction>();
+        private readonly Random random = new Random();
 
         public MainWindow()
         {
