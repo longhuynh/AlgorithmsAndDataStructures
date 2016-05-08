@@ -97,7 +97,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Set\Set.csproj">
       <Project>{1AFA297F-DF1E-4FBB-9351-608C6B881691}</Project>
-      <Name>Set %28Set\Set%29</Name>
+      <Name>Set</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
