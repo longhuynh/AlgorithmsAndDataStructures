@@ -1,19 +1,44 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace PriorityQueue
 {
     /// <summary>
-    /// A collection that returns the highest priority item first and lowest priority item last.
+    ///     A collection that returns the highest priority item first and lowest priority item last.
     /// </summary>
     /// <typeparam name="T">The type of data stored in the collection</typeparam>
-    public class PriorityQueue<T> : System.Collections.Generic.IEnumerable<T>
-        where T: IComparable<T>
+    public class PriorityQueue<T> : IEnumerable<T>
+        where T : IComparable<T>
     {
-        private readonly System.Collections.Generic.LinkedList<T> items =
-            new System.Collections.Generic.LinkedList<T>();   
+        private readonly LinkedList<T> items =
+            new LinkedList<T>();
 
         /// <summary>
-        /// Adds an item to the queue in priority order
+        ///     The number of items in the queue
+        /// </summary>
+        public int Count => items.Count;
+
+        /// <summary>
+        ///     Returns an enumerator that enumerates the queue
+        /// </summary>
+        /// <returns>The enumerator</returns>
+        public IEnumerator<T> GetEnumerator()
+        {
+            return items.GetEnumerator();
+        }
+
+        /// <summary>
+        ///     Returns an enumerator that enumerates the queue
+        /// </summary>
+        /// <returns>The enumerator</returns>
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return items.GetEnumerator();
+        }
+
+        /// <summary>
+        ///     Adds an item to the queue in priority order
         /// </summary>
         /// <param name="item">The item to place in the queue</param>
         public void Enqueue(T item)
@@ -50,7 +75,7 @@ namespace PriorityQueue
         }
 
         /// <summary>
-        /// Removes and returns the highest priority item from the queue
+        ///     Removes and returns the highest priority item from the queue
         /// </summary>
         /// <returns>The front item from the queue</returns>
         public T Dequeue()
@@ -61,7 +86,7 @@ namespace PriorityQueue
             }
 
             // store the last value in a temporary variable
-            T value = items.First.Value;
+            var value = items.First.Value;
 
             // remove the last item
             items.RemoveFirst();
@@ -71,7 +96,7 @@ namespace PriorityQueue
         }
 
         /// <summary>
-        /// Returns the highest priority item from the queue without removing it from the queue
+        ///     Returns the highest priority item from the queue without removing it from the queue
         /// </summary>
         /// <returns>The front item from the queue</returns>
         public T Peek()
@@ -85,34 +110,11 @@ namespace PriorityQueue
         }
 
         /// <summary>
-        /// The number of items in the queue
-        /// </summary>
-        public int Count => items.Count;
-
-        /// <summary>
-        /// Removes all items from the queue
+        ///     Removes all items from the queue
         /// </summary>
         public void Clear()
         {
             items.Clear();
-        }
-
-        /// <summary>
-        /// Returns an enumerator that enumerates the queue
-        /// </summary>
-        /// <returns>The enumerator</returns>
-        public System.Collections.Generic.IEnumerator<T> GetEnumerator()
-        {
-            return items.GetEnumerator();
-        }
-
-        /// <summary>
-        /// Returns an enumerator that enumerates the queue
-        /// </summary>
-        /// <returns>The enumerator</returns>
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
-        {
-            return items.GetEnumerator();
         }
     }
 }

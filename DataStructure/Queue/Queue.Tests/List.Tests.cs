@@ -7,21 +7,6 @@ namespace Queue.Tests
     public class QueueListTests
     {
         [Test]
-        public void EnqueueUpdatesCount()
-        {
-            var queue = new Queue<int>();
-
-            Assert.AreEqual(0, queue.Count, "The count should start at 0");
-
-            for (var i = 0; i < 10; i++)
-            {
-                Assert.AreEqual(i, queue.Count, "The count was off before calling Enqueue...");
-                queue.Enqueue(i);
-                Assert.AreEqual(i + 1, queue.Count, "The count was off after calling Enqueue...");
-            }
-        }
-
-        [Test]
         public void DequeuePeekCorrectOrder()
         {
             var queue = new Queue<int>();
@@ -83,6 +68,21 @@ namespace Queue.Tests
             Assert.AreEqual(0, queue.Dequeue(), "Unexpected dequeue value");
             Assert.AreEqual(1, queue.Dequeue(), "Unexpected dequeue value");
             Assert.AreEqual(2, queue.Dequeue(), "Unexpected dequeue value");
+        }
+
+        [Test]
+        public void EnqueueUpdatesCount()
+        {
+            var queue = new Queue<int>();
+
+            Assert.AreEqual(0, queue.Count, "The count should start at 0");
+
+            for (var i = 0; i < 10; i++)
+            {
+                Assert.AreEqual(i, queue.Count, "The count was off before calling Enqueue...");
+                queue.Enqueue(i);
+                Assert.AreEqual(i + 1, queue.Count, "The count was off after calling Enqueue...");
+            }
         }
 
         [Test]

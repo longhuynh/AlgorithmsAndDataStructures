@@ -3,13 +3,13 @@ using System.Collections.Generic;
 
 namespace NetFxQueue
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             var queue = new Queue<int>();
 
-            for (int i = 0; i < 10; i++)
+            for (var i = 0; i < 10; i++)
             {
                 queue.Enqueue(i);
             }
