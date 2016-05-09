@@ -13,15 +13,15 @@
                 <ColumnDefinition Width="100" />
                 <ColumnDefinition Width="100" />
             </Grid.ColumnDefinitions>
-            <Label Content="" Grid.Column="0" Height="70" HorizontalAlignment="Left" Name="queueLabel1" VerticalAlignment="Top" Width="100" BorderBrush="Black" BorderThickness="1" FontWeight="Bold" FontSize="24" HorizontalContentAlignment="Center" />
-            <Label Content="" Grid.Column="1" Height="70" HorizontalAlignment="Left" Name="queueLabel2" VerticalAlignment="Top" Width="100" BorderBrush="Black" BorderThickness="1" FontWeight="Bold" FontSize="24" HorizontalContentAlignment="Center" />
-            <Label Content="" Grid.Column="2" Height="70" HorizontalAlignment="Left" Name="queueLabel3" VerticalAlignment="Top" Width="100" BorderBrush="Black" BorderThickness="1" FontWeight="Bold" FontSize="24" HorizontalContentAlignment="Center" />
-            <Label Content="" Grid.Column="3" Height="70" HorizontalAlignment="Left" Name="queueLabel4" VerticalAlignment="Top" Width="100" BorderBrush="Black" BorderThickness="1" FontWeight="Bold" FontSize="24" HorizontalContentAlignment="Center" />
-            <Label Content="" Grid.Column="4" Height="70" HorizontalAlignment="Left" Name="queueLabel5" VerticalAlignment="Top" Width="100" BorderBrush="Black" BorderThickness="1" FontWeight="Bold" FontSize="24" HorizontalContentAlignment="Center" />
-            <Label Content="" Grid.Column="5" Height="70" HorizontalAlignment="Left" Name="queueLabel6" VerticalAlignment="Top" Width="100" BorderBrush="Black" BorderThickness="1" FontWeight="Bold" FontSize="24" HorizontalContentAlignment="Center" />
+            <Label Content="" Grid.Column="0" Height="70" HorizontalAlignment="Left" Name="QueueLabel1" VerticalAlignment="Top" Width="100" BorderBrush="Black" BorderThickness="1" FontWeight="Bold" FontSize="24" HorizontalContentAlignment="Center" />
+            <Label Content="" Grid.Column="1" Height="70" HorizontalAlignment="Left" Name="QueueLabel2" VerticalAlignment="Top" Width="100" BorderBrush="Black" BorderThickness="1" FontWeight="Bold" FontSize="24" HorizontalContentAlignment="Center" />
+            <Label Content="" Grid.Column="2" Height="70" HorizontalAlignment="Left" Name="QueueLabel3" VerticalAlignment="Top" Width="100" BorderBrush="Black" BorderThickness="1" FontWeight="Bold" FontSize="24" HorizontalContentAlignment="Center" />
+            <Label Content="" Grid.Column="3" Height="70" HorizontalAlignment="Left" Name="QueueLabel4" VerticalAlignment="Top" Width="100" BorderBrush="Black" BorderThickness="1" FontWeight="Bold" FontSize="24" HorizontalContentAlignment="Center" />
+            <Label Content="" Grid.Column="4" Height="70" HorizontalAlignment="Left" Name="QueueLabel5" VerticalAlignment="Top" Width="100" BorderBrush="Black" BorderThickness="1" FontWeight="Bold" FontSize="24" HorizontalContentAlignment="Center" />
+            <Label Content="" Grid.Column="5" Height="70" HorizontalAlignment="Left" Name="QueueLabel6" VerticalAlignment="Top" Width="100" BorderBrush="Black" BorderThickness="1" FontWeight="Bold" FontSize="24" HorizontalContentAlignment="Center" />
         </Grid>
-        <Button Content="Create" Height="28" HorizontalAlignment="Left" Margin="12,134,0,0" Name="buttonCreate" VerticalAlignment="Top" Width="129" Click="ButtonCreateClick" />
-        <Button Content="Process" Height="28" HorizontalAlignment="Left" Margin="183,134,0,0" Name="buttonProcess" VerticalAlignment="Top" Width="129" Click="ButtonProcessClick" />
+        <Button Content="Create" Height="28" HorizontalAlignment="Left" Margin="12,134,0,0" Name="ButtonCreate" VerticalAlignment="Top" Width="129" Click="ButtonCreateClick" />
+        <Button Content="Process" Height="28" HorizontalAlignment="Left" Margin="183,134,0,0" Name="ButtonProcess" VerticalAlignment="Top" Width="129" Click="ButtonProcessClick" />
         <ListBox Height="165" HorizontalAlignment="Left" Margin="412,134,0,0" Name="listBox1" VerticalAlignment="Top" Width="201" />
         <Label Content="Head" Height="26" HorizontalAlignment="Left" Margin="41,88,0,0" Name="label1" VerticalAlignment="Top" Width="71" />
     </Grid>
