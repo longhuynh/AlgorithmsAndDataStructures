@@ -7,7 +7,7 @@ namespace Stack.Tests
     [TestFixture]
     public class StackTestsArray
     {
-        private readonly object[] PushTestData =
+        public readonly object[] PushTestData =
         {
             new int[0],
             new[] {0},
@@ -19,7 +19,7 @@ namespace Stack.Tests
         };
 
         [Test]
-        [TestCaseSource("PushTestData")]
+        [TestCaseSource(nameof(PushTestData))]
         public void ClearSuccessCases(int[] testData)
         {
             var stack = new Stack<int>();
@@ -78,7 +78,7 @@ namespace Stack.Tests
         }
 
         [Test]
-        [TestCaseSource("PushTestData")]
+        [TestCaseSource(nameof(PushTestData))]
         public void StackSuccessCases(int[] testData)
         {
             var stack = new Stack<int>();

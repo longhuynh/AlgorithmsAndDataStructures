@@ -45,7 +45,7 @@ namespace Calculator
                             values.Push(left%right);
                             break;
                         default:
-                            throw new ArgumentException(string.Format("Unrecognized token: {0}", token));
+                            throw new ArgumentException($"Unrecognized token: {token}");
                     }
                 }
             }

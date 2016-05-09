@@ -90,14 +90,14 @@ namespace Queue.Array
 
                     if (tail < head)
                     {
-                        // copy the _items[head].._items[end] -> newArray[0]..newArray[N]
+                        // copy the items[head]..items[end] -> newArray[0]..newArray[N]
                         for (var index = head; index < items.Length; index++)
                         {
                             newArray[targetIndex] = items[index];
                             targetIndex++;
                         }
 
-                        // copy _items[0].._items[tail] -> newArray[N+1]..
+                        // copy items[0]..items[tail] -> newArray[N+1]..
                         for (var index = 0; index <= tail; index++)
                         {
                             newArray[targetIndex] = items[index];
@@ -106,7 +106,7 @@ namespace Queue.Array
                     }
                     else
                     {
-                        // copy the _items[head].._items[tail] -> newArray[0]..newArray[N]
+                        // copy the items[head]..items[tail] -> newArray[0]..newArray[N]
                         for (var index = head; index <= tail; index++)
                         {
                             newArray[targetIndex] = items[index];
@@ -128,7 +128,7 @@ namespace Queue.Array
 
             // now we have a properly sized array and can focus on wrapping issues.
 
-            // if _tail is at the end of the array we need to wrap around
+            // if tail is at the end of the array we need to wrap around
             if (tail == items.Length - 1)
             {
                 tail = 0;

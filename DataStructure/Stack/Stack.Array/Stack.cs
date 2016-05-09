@@ -10,12 +10,10 @@ namespace Stack.Array
     /// <typeparam name="T">The type of item contained in the stack</typeparam>
     public class Stack<T> : IEnumerable<T>
     {
-        // The array of items contained in the stack.  Initialized to 0 length,
-        // will grow as needed during Push
+        // The array of items contained in the stack.  
+        // Initialized to 0 length, will grow as needed during Push
         private T[] items = new T[0];
-
-        // The current number of items in the stack.
-
+        
         /// <summary>
         ///     The current number of items in the stack
         /// </summary>
@@ -48,20 +46,20 @@ namespace Stack.Array
         /// <param name="item">The item</param>
         public void Push(T item)
         {
-            // size = 0 ... first push
-            // size == length ... growth boundary
+            // Size = 0 ... first push
+            // Size == length ... growth boundary
             if (Count == items.Length)
             {
-                // initial size of 4, otherwise double the current length
+                // Initial size of 4, otherwise double the current length
                 var newLength = Count == 0 ? 4 : Count*2;
 
-                // allocate, copy and assign the new array
+                // Allocate, copy and assign the new array
                 var newArray = new T[newLength];
                 items.CopyTo(newArray, 0);
                 items = newArray;
             }
 
-            // add the item to the stack array and increase the size
+            // Add the item to the stack array and increase the size
             items[Count] = item;
             Count++;
         }
