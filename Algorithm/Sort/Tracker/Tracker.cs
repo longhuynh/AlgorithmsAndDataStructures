@@ -3,24 +3,11 @@ using System.Threading;
 
 namespace Tracker
 {
-    public interface IPerformanceTracker
-    {
-        long Comparisons
-        {
-            get;
-        }
-
-        long Swaps
-        {
-            get;
-        }
-
-        void Reset();
-    }
-
     public class Tracker<T> : IPerformanceTracker
-        where T: IComparable<T>
+        where T : IComparable<T>
     {
+        private long comparisons;
+        private long swaps;
         public long Comparisons => Interlocked.Read(ref comparisons);
 
         public long Swaps => Interlocked.Read(ref swaps);
@@ -37,7 +24,7 @@ namespace Tracker
             {
                 Interlocked.Increment(ref swaps);
 
-                T temp = items[left];
+                var temp = items[left];
                 items[left] = items[right];
                 items[right] = temp;
             }
@@ -55,8 +42,5 @@ namespace Tracker
 
             return lhs.CompareTo(rhs);
         }
-
-        long comparisons;
-        long swaps;
     }
 }

@@ -1,6 +1,6 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 using Sorting;
-using System;
 
 namespace SortingTests
 {
@@ -13,19 +13,19 @@ namespace SortingTests
             new InsertionSort<int>(),
             new MergeSort<int>(),
             new SelectionSort<int>(),
-            new QuickSort<int>(),
+            new QuickSort<int>()
         };
 
-        [TestCaseSource("SortingTypes")]
+        [TestCaseSource(nameof(SortingTypes))]
         public void PreSorted(ISorter<int> sorter)
         {
-            int[] presorted = new[] {int.MinValue, 0, 1, 2, 3, 4, 5, 6, 7, int.MaxValue};
+            int[] presorted = {int.MinValue, 0, 1, 2, 3, 4, 5, 6, 7, int.MaxValue};
             sorter.Sort(presorted);
 
             AssertArrayIsSorted(presorted);
         }
 
-        [TestCaseSource("SortingTypes")]
+        [TestCaseSource(nameof(SortingTypes))]
         public void AllReversed(ISorter<int> sorter)
         {
             int[] reversed = {int.MaxValue, 7, 6, 5, 4, 3, 2, 1, 0, int.MinValue};
@@ -34,7 +34,7 @@ namespace SortingTests
             AssertArrayIsSorted(reversed);
         }
 
-        [TestCaseSource("SortingTypes")]
+        [TestCaseSource(nameof(SortingTypes))]
         public void SingleOutOfOrder(ISorter<int> sorter)
         {
             int[] values = {3, 8, 2, 5, 1, 4, 6, 7};
@@ -43,7 +43,7 @@ namespace SortingTests
             AssertArrayIsSorted(values);
         }
 
-        [TestCaseSource("SortingTypes")]
+        [TestCaseSource(nameof(SortingTypes))]
         public void MultipleOutOfOrder(ISorter<int> sorter)
         {
             int[] values = {4, 3, 1, 2};
@@ -52,13 +52,13 @@ namespace SortingTests
             AssertArrayIsSorted(values);
         }
 
-        [TestCaseSource("SortingTypes")]
+        [TestCaseSource(nameof(SortingTypes))]
         public void RandomValuesSort(ISorter<int> sorter)
         {
-            int[] items = new int[1000];
-            Random random = new Random();
+            var items = new int[1000];
+            var random = new Random();
 
-            for (int i = 0; i < items.Length; i++)
+            for (var i = 0; i < items.Length; i++)
             {
                 items[i] = random.Next();
             }
@@ -67,7 +67,7 @@ namespace SortingTests
             AssertArrayIsSorted(items);
         }
 
-        [TestCaseSource("SortingTypes")]
+        [TestCaseSource(nameof(SortingTypes))]
         public void EmptyDoesNotCompareOrSwap(ISorter<int> sorter)
         {
             int[] empty = {};
@@ -77,9 +77,9 @@ namespace SortingTests
 
         private void AssertArrayIsSorted(int[] values)
         {
-            int previous = int.MinValue;
+            var previous = int.MinValue;
 
-            foreach (int current in values)
+            foreach (var current in values)
             {
                 Assert.IsTrue(previous <= current, "The current value is greater than the previous value (not sorted)");
                 previous = current;
