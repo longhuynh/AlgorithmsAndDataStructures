@@ -3,10 +3,10 @@
 namespace BinaryTree
 {
     /// <summary>
-    /// A binary tree node class - encapsulates the value and left/right pointers.
+    ///     A binary tree node class - encapsulates the value and left/right pointers.
     /// </summary>
     /// <typeparam name="TNode"></typeparam>
-    class BinaryTreeNode<TNode> : IComparable<TNode>
+    internal class BinaryTreeNode<TNode> : IComparable<TNode>
         where TNode : IComparable<TNode>
     {
         public BinaryTreeNode(TNode value)
@@ -16,10 +16,10 @@ namespace BinaryTree
 
         public BinaryTreeNode<TNode> Left { get; set; }
         public BinaryTreeNode<TNode> Right { get; set; }
-        public TNode Value { get; private set; }
+        public TNode Value { get; }
 
         /// <summary>
-        /// Compares the current node to the provided value
+        ///     Compares the current node to the provided value
         /// </summary>
         /// <param name="other">The node value to compare to</param>
         /// <returns>1 if the instance value is greater than the provided value, -1 if less or 0 if equal.</returns>

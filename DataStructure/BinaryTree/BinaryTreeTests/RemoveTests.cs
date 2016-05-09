@@ -3,12 +3,12 @@ using NUnit.Framework;
 
 namespace BinaryTreeTests
 {
-    class RemoveTests
+    internal class RemoveTests
     {
         [Test]
         public void RemoveHead()
         {
-            BinaryTree<int> tree = new BinaryTree<int>();
+            var tree = new BinaryTree<int> {4, 5, 2, 7, 3, 6, 1, 8};
 
             //        4
             //       / \
@@ -17,15 +17,6 @@ namespace BinaryTreeTests
             //    1   3   7
             //           / \
             //          6   8
-
-            tree.Add(4);
-            tree.Add(5);
-            tree.Add(2);
-            tree.Add(7);
-            tree.Add(3);
-            tree.Add(6);
-            tree.Add(1);
-            tree.Add(8);
 
             tree.Remove(4);
 
@@ -36,9 +27,9 @@ namespace BinaryTreeTests
             //    1   3  6  8
 
 
-            int[] expected = new[] {1, 3, 2, 6, 8, 7, 5,};
+            int[] expected = {1, 3, 2, 6, 8, 7, 5};
 
-            int index = 0;
+            var index = 0;
 
             tree.PostOrderTraversal(
                 item => Assert.AreEqual(expected[index++], item, "The item enumerated in the wrong order"));
@@ -47,7 +38,7 @@ namespace BinaryTreeTests
         [Test]
         public void RemoveHeadLineRight()
         {
-            BinaryTree<int> tree = new BinaryTree<int>();
+            var tree = new BinaryTree<int> {1, 2, 3};
 
             // 1
             //  \
@@ -55,21 +46,15 @@ namespace BinaryTreeTests
             //    \
             //     3
 
-
-            tree.Add(1);
-            tree.Add(2);
-            tree.Add(3);
-
             tree.Remove(1);
 
             // 2
             //  \
             //   3
 
+            int[] expected = {3, 2};
 
-            int[] expected = new[] {3, 2};
-
-            int index = 0;
+            var index = 0;
 
             tree.PostOrderTraversal(
                 item => Assert.AreEqual(expected[index++], item, "The item enumerated in the wrong order"));
@@ -78,28 +63,23 @@ namespace BinaryTreeTests
         [Test]
         public void RemoveHeadLineLeft()
         {
-            BinaryTree<int> tree = new BinaryTree<int>();
+            var tree = new BinaryTree<int> {3, 2, 1};
 
             //     3
             //    /
             //   2
             //  /
             // 1
-
-
-            tree.Add(3);
-            tree.Add(2);
-            tree.Add(1);
-
+            
             tree.Remove(3);
 
             //   2
             //  /
             // 1
 
-            int[] expected = new[] {1, 2};
+            int[] expected = {1, 2};
 
-            int index = 0;
+            var index = 0;
 
             tree.PostOrderTraversal(
                 item => Assert.AreEqual(expected[index++], item, "The item enumerated in the wrong order"));
@@ -109,13 +89,13 @@ namespace BinaryTreeTests
         [Test]
         public void RemoveHeadOnlyNode()
         {
-            BinaryTree<int> tree = new BinaryTree<int>();
+            var tree = new BinaryTree<int>();
 
             tree.Add(4);
 
             Assert.IsTrue(tree.Remove(4), "Remove should return true for found node");
 
-            foreach (int item in tree)
+            foreach (var item in tree)
             {
                 Assert.Fail("An empty tree should not enumerate any values");
             }
@@ -124,7 +104,7 @@ namespace BinaryTreeTests
         [Test]
         public void RemoveNodeNoLeftChild()
         {
-            BinaryTree<int> tree = new BinaryTree<int>();
+            var tree = new BinaryTree<int> {4, 5, 2, 7, 3, 6, 1, 8};
 
             //        4
             //       / \
@@ -134,14 +114,6 @@ namespace BinaryTreeTests
             //           / \
             //          6   8
 
-            tree.Add(4);
-            tree.Add(5);
-            tree.Add(2);
-            tree.Add(7);
-            tree.Add(3);
-            tree.Add(6);
-            tree.Add(1);
-            tree.Add(8);
 
             Assert.IsTrue(tree.Remove(5), "Remove should return true for found node");
 
@@ -153,9 +125,9 @@ namespace BinaryTreeTests
             //              \
             //               8
 
-            int[] expected = new[] {1, 3, 2, 8, 7, 6, 4,};
+            int[] expected = {1, 3, 2, 8, 7, 6, 4};
 
-            int index = 0;
+            var index = 0;
 
             tree.PostOrderTraversal(
                 item => Assert.AreEqual(expected[index++], item, "The item enumerated in the wrong order"));
@@ -164,7 +136,7 @@ namespace BinaryTreeTests
         [Test]
         public void RemoveNodeRightLeaf()
         {
-            BinaryTree<int> tree = new BinaryTree<int>();
+            var tree = new BinaryTree<int> {4, 5, 2, 7, 3, 6, 1, 8};
 
             //        4
             //       / \
@@ -174,14 +146,6 @@ namespace BinaryTreeTests
             //           / \
             //          6   8
 
-            tree.Add(4);
-            tree.Add(5);
-            tree.Add(2);
-            tree.Add(7);
-            tree.Add(3);
-            tree.Add(6);
-            tree.Add(1);
-            tree.Add(8);
 
             Assert.IsTrue(tree.Remove(8), "Remove should return true for found node");
 
@@ -193,9 +157,9 @@ namespace BinaryTreeTests
             //           /
             //          6
 
-            int[] expected = new[] {1, 3, 2, 6, 7, 5, 4,};
+            int[] expected = {1, 3, 2, 6, 7, 5, 4};
 
-            int index = 0;
+            var index = 0;
 
             tree.PostOrderTraversal(
                 item => Assert.AreEqual(expected[index++], item, "The item enumerated in the wrong order"));
@@ -204,7 +168,7 @@ namespace BinaryTreeTests
         [Test]
         public void RemoveNodeLeftLeaf()
         {
-            BinaryTree<int> tree = new BinaryTree<int>();
+            var tree = new BinaryTree<int> {4, 5, 2, 7, 3, 6, 1, 8};
 
             //        4
             //       / \
@@ -214,14 +178,6 @@ namespace BinaryTreeTests
             //           / \
             //          6   8
 
-            tree.Add(4);
-            tree.Add(5);
-            tree.Add(2);
-            tree.Add(7);
-            tree.Add(3);
-            tree.Add(6);
-            tree.Add(1);
-            tree.Add(8);
 
             Assert.IsTrue(tree.Remove(1), "Remove should return true for found node");
 
@@ -233,9 +189,9 @@ namespace BinaryTreeTests
             //           / \
             //          6   8
 
-            int[] expected = new[] {3, 2, 6, 8, 7, 5, 4,};
+            int[] expected = {3, 2, 6, 8, 7, 5, 4};
 
-            int index = 0;
+            var index = 0;
 
             tree.PostOrderTraversal(
                 item => Assert.AreEqual(expected[index++], item, "The item enumerated in the wrong order"));
@@ -245,7 +201,7 @@ namespace BinaryTreeTests
         [Test]
         public void RemoveCurrentRightHasNoLeft()
         {
-            BinaryTree<int> tree = new BinaryTree<int>();
+            var tree = new BinaryTree<int> {4, 6, 5, 2, 7, 3, 1, 8};
 
             //         4
             //       /   \
@@ -255,14 +211,6 @@ namespace BinaryTreeTests
             //               \
             //                8
 
-            tree.Add(4);
-            tree.Add(6);
-            tree.Add(5);
-            tree.Add(2);
-            tree.Add(7);
-            tree.Add(3);
-            tree.Add(1);
-            tree.Add(8);
 
             Assert.IsTrue(tree.Remove(6), "Remove should return true for found node");
 
@@ -272,9 +220,9 @@ namespace BinaryTreeTests
             //     / \    / \
             //    1   3  5   8
 
-            int[] expected = new[] {1, 3, 2, 5, 8, 7, 4,};
+            int[] expected = {1, 3, 2, 5, 8, 7, 4};
 
-            int index = 0;
+            var index = 0;
 
             tree.PostOrderTraversal(
                 item => Assert.AreEqual(expected[index++], item, "The item enumerated in the wrong order"));
@@ -283,7 +231,7 @@ namespace BinaryTreeTests
         [Test]
         public void RemoveCurrentHasNoRight()
         {
-            BinaryTree<int> tree = new BinaryTree<int>();
+            var tree = new BinaryTree<int> {4, 2, 1, 3, 8, 6, 7, 5};
 
             //         4
             //       /   \
@@ -293,14 +241,6 @@ namespace BinaryTreeTests
             //          / \
             //         5   7   
 
-            tree.Add(4);
-            tree.Add(2);
-            tree.Add(1);
-            tree.Add(3);
-            tree.Add(8);
-            tree.Add(6);
-            tree.Add(7);
-            tree.Add(5);
 
             Assert.IsTrue(tree.Remove(8), "Remove should return true for found node");
 
@@ -310,9 +250,9 @@ namespace BinaryTreeTests
             //     / \    / \
             //    1   3  5   7
 
-            int[] expected = new[] {1, 3, 2, 5, 7, 6, 4,};
+            int[] expected = {1, 3, 2, 5, 7, 6, 4};
 
-            int index = 0;
+            var index = 0;
 
             tree.PostOrderTraversal(
                 item => Assert.AreEqual(expected[index++], item, "The item enumerated in the wrong order"));
@@ -321,7 +261,7 @@ namespace BinaryTreeTests
         [Test]
         public void RemoveCurrentRightHasLeft()
         {
-            BinaryTree<int> tree = new BinaryTree<int>();
+            var tree = new BinaryTree<int> {4, 2, 1, 3, 6, 5, 8, 7};
 
             //         4
             //       /    \
@@ -331,14 +271,6 @@ namespace BinaryTreeTests
             //              /
             //             7
 
-            tree.Add(4);
-            tree.Add(2);
-            tree.Add(1);
-            tree.Add(3);
-            tree.Add(6);
-            tree.Add(5);
-            tree.Add(8);
-            tree.Add(7);
 
             Assert.IsTrue(tree.Remove(6), "Remove should return true for found node");
 
@@ -348,9 +280,9 @@ namespace BinaryTreeTests
             //     / \    / \
             //    1   3  5   8
 
-            int[] expected = new[] {1, 3, 2, 5, 8, 7, 4,};
+            int[] expected = {1, 3, 2, 5, 8, 7, 4};
 
-            int index = 0;
+            var index = 0;
 
             tree.PostOrderTraversal(
                 item => Assert.AreEqual(expected[index++], item, "The item enumerated in the wrong order"));
@@ -359,14 +291,14 @@ namespace BinaryTreeTests
         [Test]
         public void RemoveFromEmpty()
         {
-            BinaryTree<int> tree = new BinaryTree<int>();
+            var tree = new BinaryTree<int>();
             Assert.IsFalse(tree.Remove(10));
         }
 
         [Test]
         public void RemoveMissingFromTree()
         {
-            BinaryTree<int> tree = new BinaryTree<int>();
+            var tree = new BinaryTree<int>();
 
             //         4
             //       /   \
@@ -376,9 +308,9 @@ namespace BinaryTreeTests
             //          / \
             //         5   7   
 
-            int[] values = new[] {4, 2, 1, 3, 8, 6, 7, 5};
+            int[] values = {4, 2, 1, 3, 8, 6, 7, 5};
 
-            foreach (int i in values)
+            foreach (var i in values)
             {
                 Assert.IsFalse(tree.Contains(10), "Tree should not contain 10");
                 tree.Add(i);

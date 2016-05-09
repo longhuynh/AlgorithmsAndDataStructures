@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace BinaryTree
@@ -7,12 +8,197 @@ namespace BinaryTree
         where T : IComparable<T>
     {
         private BinaryTreeNode<T> head;
-        private int count;
+
+        /// <summary>
+        ///     Returns the number of items currently contained in the tree
+        /// </summary>
+        public int Count { get; private set; }
+
+        /// <summary>
+        ///     Determines if the specified value exists in the binary tree.
+        /// </summary>
+        /// <param name="value">The value to search for.</param>
+        /// <returns>True if the tree contains the value, false otherwise</returns>
+        public bool Contains(T value)
+        {
+            // defer to the node search helper function.
+            BinaryTreeNode<T> parent;
+            return FindWithParent(value, out parent) != null;
+        }
+
+        /// <summary>
+        ///     Finds and returns the first node containing the specified value.  If the value
+        ///     is not found, returns null.  Also returns the parent of the found node (or null)
+        ///     which is used in Remove.
+        /// </summary>
+        /// <param name="value">The value to search for</param>
+        /// <param name="parent">The parent of the found node (or null)</param>
+        /// <returns>The found node (or null)</returns>
+        private BinaryTreeNode<T> FindWithParent(T value, out BinaryTreeNode<T> parent)
+        {
+            // Now, try to find data in the tree
+            var current = head;
+            parent = null;
+
+            // while we don't have a match
+            while (current != null)
+            {
+                var result = current.CompareTo(value);
+
+                if (result > 0)
+                {
+                    // if the value is less than current, go left.
+                    parent = current;
+                    current = current.Left;
+                }
+                else if (result < 0)
+                {
+                    // if the value is more than current, go right.
+                    parent = current;
+                    current = current.Right;
+                }
+                else
+                {
+                    // we have a match!
+                    break;
+                }
+            }
+
+            return current;
+        }
+
+        #region Remove
+
+        /// <summary>
+        ///     Removes the first occurance of the specified value from the tree.
+        /// </summary>
+        /// <param name="value">The value to remove</param>
+        /// <returns>True if the value was removed, false otherwise</returns>
+        public bool Remove(T value)
+        {
+            BinaryTreeNode<T> current, parent;
+
+            current = FindWithParent(value, out parent);
+
+            if (current == null)
+            {
+                return false;
+            }
+
+            Count--;
+
+            // Case 1: If current has no right child, then current's left replaces current
+            if (current.Right == null)
+            {
+                if (parent == null)
+                {
+                    head = current.Left;
+                }
+                else
+                {
+                    var result = parent.CompareTo(current.Value);
+                    if (result > 0)
+                    {
+                        // if parent value is greater than current value
+                        // make the current left child a left child of parent
+                        parent.Left = current.Left;
+                    }
+                    else if (result < 0)
+                    {
+                        // if parent value is less than current value
+                        // make the current left child a right child of parent
+                        parent.Right = current.Left;
+                    }
+                }
+            }
+            // Case 2: If current's right child has no left child, then current's right child
+            //         replaces current
+            else if (current.Right.Left == null)
+            {
+                current.Right.Left = current.Left;
+
+                if (parent == null)
+                {
+                    head = current.Right;
+                }
+                else
+                {
+                    var result = parent.CompareTo(current.Value);
+                    if (result > 0)
+                    {
+                        // if parent value is greater than current value
+                        // make the current right child a left child of parent
+                        parent.Left = current.Right;
+                    }
+                    else if (result < 0)
+                    {
+                        // if parent value is less than current value
+                        // make the current right child a right child of parent
+                        parent.Right = current.Right;
+                    }
+                }
+            }
+            // Case 3: If current's right child has a left child, replace current with current's
+            //         right child's left-most child
+            else
+            {
+                // find the right's left-most child
+                var leftmost = current.Right.Left;
+                var leftmostParent = current.Right;
+
+                while (leftmost.Left != null)
+                {
+                    leftmostParent = leftmost;
+                    leftmost = leftmost.Left;
+                }
+
+                // the parent's left subtree becomes the leftmost's right subtree
+                leftmostParent.Left = leftmost.Right;
+
+                // assign leftmost's left and right to current's left and right children
+                leftmost.Left = current.Left;
+                leftmost.Right = current.Right;
+
+                if (parent == null)
+                {
+                    head = leftmost;
+                }
+                else
+                {
+                    var result = parent.CompareTo(current.Value);
+                    if (result > 0)
+                    {
+                        // if parent value is greater than current value
+                        // make leftmost the parent's left child
+                        parent.Left = leftmost;
+                    }
+                    else if (result < 0)
+                    {
+                        // if parent value is less than current value
+                        // make leftmost the parent's right child
+                        parent.Right = leftmost;
+                    }
+                }
+            }
+
+            return true;
+        }
+
+        #endregion
+
+        /// <summary>
+        ///     Removes all items from the tree
+        /// </summary>
+        public void Clear()
+        {
+            head = null;
+            Count = 0;
+        }
 
         #region Add
 
         /// <summary>
-        /// Adds the provided value to the binary tree.
+        ///     Adds the provided value to the binary tree.
         /// </summary>
         /// <param name="value"></param>
         public void Add(T value)
@@ -28,7 +214,7 @@ namespace BinaryTree
                 AddTo(head, value);
             }
 
-            count++;
+            Count++;
         }
 
         // Recursive add algorithm
@@ -66,182 +252,10 @@ namespace BinaryTree
 
         #endregion
 
-        /// <summary>
-        /// Determines if the specified value exists in the binary tree.
-        /// </summary>
-        /// <param name="value">The value to search for.</param>
-        /// <returns>True if the tree contains the value, false otherwise</returns>
-        public bool Contains(T value)
-        {
-            // defer to the node search helper function.
-            BinaryTreeNode<T> parent;
-            return FindWithParent(value, out parent) != null;
-        }
-
-        /// <summary>
-        /// Finds and returns the first node containing the specified value.  If the value
-        /// is not found, returns null.  Also returns the parent of the found node (or null)
-        /// which is used in Remove.
-        /// </summary>
-        /// <param name="value">The value to search for</param>
-        /// <param name="parent">The parent of the found node (or null)</param>
-        /// <returns>The found node (or null)</returns>
-        private BinaryTreeNode<T> FindWithParent(T value, out BinaryTreeNode<T> parent)
-        {
-            // Now, try to find data in the tree
-            BinaryTreeNode<T> current = head;
-            parent = null;
-
-            // while we don't have a match
-            while (current != null)
-            {
-                int result = current.CompareTo(value);
-
-                if (result > 0)
-                {
-                    // if the value is less than current, go left.
-                    parent = current;
-                    current = current.Left;
-                }
-                else if (result < 0)
-                {
-                    // if the value is more than current, go right.
-                    parent = current;
-                    current = current.Right;
-                }
-                else
-                {
-                    // we have a match!
-                    break;
-                }
-            }
-
-            return current;
-        }
-
-        #region Remove
-
-        /// <summary>
-        /// Removes the first occurance of the specified value from the tree.
-        /// </summary>
-        /// <param name="value">The value to remove</param>
-        /// <returns>True if the value was removed, false otherwise</returns>
-        public bool Remove(T value)
-        {
-            BinaryTreeNode<T> current, parent;
-
-            current = FindWithParent(value, out parent);
-
-            if (current == null)
-            {
-                return false;
-            }
-
-            count--;
-
-            // Case 1: If current has no right child, then current's left replaces current
-            if (current.Right == null)
-            {
-                if (parent == null)
-                {
-                    head = current.Left;
-                }
-                else
-                {
-                    int result = parent.CompareTo(current.Value);
-                    if (result > 0)
-                    {
-                        // if parent value is greater than current value
-                        // make the current left child a left child of parent
-                        parent.Left = current.Left;
-                    }
-                    else if (result < 0)
-                    {
-                        // if parent value is less than current value
-                        // make the current left child a right child of parent
-                        parent.Right = current.Left;
-                    }
-                }
-            }
-            // Case 2: If current's right child has no left child, then current's right child
-            //         replaces current
-            else if (current.Right.Left == null)
-            {
-                current.Right.Left = current.Left;
-
-                if (parent == null)
-                {
-                    head = current.Right;
-                }
-                else
-                {
-                    int result = parent.CompareTo(current.Value);
-                    if (result > 0)
-                    {
-                        // if parent value is greater than current value
-                        // make the current right child a left child of parent
-                        parent.Left = current.Right;
-                    }
-                    else if (result < 0)
-                    {
-                        // if parent value is less than current value
-                        // make the current right child a right child of parent
-                        parent.Right = current.Right;
-                    }
-                }
-            }
-            // Case 3: If current's right child has a left child, replace current with current's
-            //         right child's left-most child
-            else
-            {
-                // find the right's left-most child
-                BinaryTreeNode<T> leftmost = current.Right.Left;
-                BinaryTreeNode<T> leftmostParent = current.Right;
-
-                while (leftmost.Left != null)
-                {
-                    leftmostParent = leftmost;
-                    leftmost = leftmost.Left;
-                }
-
-                // the parent's left subtree becomes the leftmost's right subtree
-                leftmostParent.Left = leftmost.Right;
-
-                // assign leftmost's left and right to current's left and right children
-                leftmost.Left = current.Left;
-                leftmost.Right = current.Right;
-
-                if (parent == null)
-                {
-                    head = leftmost;
-                }
-                else
-                {
-                    int result = parent.CompareTo(current.Value);
-                    if (result > 0)
-                    {
-                        // if parent value is greater than current value
-                        // make leftmost the parent's left child
-                        parent.Left = leftmost;
-                    }
-                    else if (result < 0)
-                    {
-                        // if parent value is less than current value
-                        // make leftmost the parent's right child
-                        parent.Right = leftmost;
-                    }
-                }
-            }
-
-            return true;
-        }
-
-        #endregion
-
         #region Pre-Order Traversal
 
         /// <summary>
-        /// Performs the provided action on each binary tree value in pre-order traversal order.
+        ///     Performs the provided action on each binary tree value in pre-order traversal order.
         /// </summary>
         /// <param name="action">The action to perform</param>
         public void PreOrderTraversal(Action<T> action)
@@ -264,7 +278,7 @@ namespace BinaryTree
         #region Post-Order Traversal
 
         /// <summary>
-        /// Performs the provided action on each binary tree value in post-order traversal order.
+        ///     Performs the provided action on each binary tree value in post-order traversal order.
         /// </summary>
         /// <param name="action">The action to perform</param>
         public void PostOrderTraversal(Action<T> action)
@@ -287,7 +301,7 @@ namespace BinaryTree
         #region In-Order Enumeration
 
         /// <summary>
-        /// Performs the provided action on each binary tree value in in-order traversal order.
+        ///     Performs the provided action on each binary tree value in in-order traversal order.
         /// </summary>
         /// <param name="action">The action to perform</param>
         public void InOrderTraversal(Action<T> action)
@@ -308,7 +322,7 @@ namespace BinaryTree
         }
 
         /// <summary>
-        /// Enumerates the values contains in the binary tree in in-order traversal order.
+        ///     Enumerates the values contains in the binary tree in in-order traversal order.
         /// </summary>
         /// <returns>The enumerator</returns>
         public IEnumerator<T> InOrderTraversal()
@@ -318,13 +332,13 @@ namespace BinaryTree
             if (head != null)
             {
                 // store the nodes we've skipped in this stack (avoids recursion)
-                Stack<BinaryTreeNode<T>> stack = new Stack<BinaryTreeNode<T>>();
+                var stack = new Stack<BinaryTreeNode<T>>();
 
-                BinaryTreeNode<T> current = head;
+                var current = head;
 
                 // when removing recursion we need to keep track of whether or not
                 // we should be going to the left node or the right nodes next.
-                bool goLeftNext = true;
+                var goLeftNext = true;
 
                 // start by pushing Head onto the stack
                 stack.Push(current);
@@ -367,7 +381,7 @@ namespace BinaryTree
         }
 
         /// <summary>
-        /// Returns an enumerator that performs an in-order traversal of the binary tree
+        ///     Returns an enumerator that performs an in-order traversal of the binary tree
         /// </summary>
         /// <returns>The in-order enumerator</returns>
         public IEnumerator<T> GetEnumerator()
@@ -376,28 +390,14 @@ namespace BinaryTree
         }
 
         /// <summary>
-        /// Returns an enumerator that performs an in-order traversal of the binary tree
+        ///     Returns an enumerator that performs an in-order traversal of the binary tree
         /// </summary>
         /// <returns>The in-order enumerator</returns>
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+        IEnumerator IEnumerable.GetEnumerator()
         {
             return GetEnumerator();
         }
 
         #endregion
-
-        /// <summary>
-        /// Removes all items from the tree
-        /// </summary>
-        public void Clear()
-        {
-            head = null;
-            count = 0;
-        }
-
-        /// <summary>
-        /// Returns the number of items currently contained in the tree
-        /// </summary>
-        public int Count => count;
     }
 }
