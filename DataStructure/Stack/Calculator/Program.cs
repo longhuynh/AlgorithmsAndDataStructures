@@ -1,17 +1,17 @@
-﻿using Stack.List;
-using System;
+﻿using System;
+using Stack.List;
 
 namespace Calculator
 {
-    class Program
+    internal class Program
     {
         // calc.exe 5 6 7 * + 1 -
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             // The stack of integers not yet operated on
-            Stack<int> values = new Stack<int>();
+            var values = new Stack<int>();
 
-            foreach (string token in args)
+            foreach (var token in args)
             {
                 // if the value is an integer...
                 int value;
@@ -23,8 +23,8 @@ namespace Calculator
                 else
                 {
                     // otherwise evaluate the expresion...
-                    int right = values.Pop();
-                    int left = values.Pop();
+                    var right = values.Pop();
+                    var left = values.Pop();
 
                     // ... and pop the result back to the stack
                     switch (token)
@@ -36,13 +36,13 @@ namespace Calculator
                             values.Push(left - right);
                             break;
                         case "*":
-                            values.Push(left * right);
+                            values.Push(left*right);
                             break;
                         case "/":
-                            values.Push(left / right);
+                            values.Push(left/right);
                             break;
                         case "%":
-                            values.Push(left % right);
+                            values.Push(left%right);
                             break;
                         default:
                             throw new ArgumentException(string.Format("Unrecognized token: {0}", token));

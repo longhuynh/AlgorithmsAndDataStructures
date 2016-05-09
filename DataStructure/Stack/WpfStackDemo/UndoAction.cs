@@ -22,7 +22,7 @@ namespace WpfStackDemo
 
         public override string ToString()
         {
-            return string.Format("{0}: {1}", button.Content, brush);
+            return $"{button.Content}: {brush}";
         }
     }
 }

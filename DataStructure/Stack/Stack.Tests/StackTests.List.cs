@@ -18,7 +18,7 @@ namespace Stack.Tests
         };
 
         [Test]
-        [TestCaseSource("PushTestData")]
+        [TestCaseSource(nameof(PushTestData))]
         public void ClearSuccessCases(int[] testData)
         {
             var stack = new Stack<int>();
@@ -77,7 +77,7 @@ namespace Stack.Tests
         }
 
         [Test]
-        [TestCaseSource("PushTestData")]
+        [TestCaseSource(nameof(PushTestData))]
         public void StackSuccessCases(int[] testData)
         {
             var stack = new Stack<int>();

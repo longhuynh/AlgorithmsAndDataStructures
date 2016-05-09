@@ -3,13 +3,13 @@ using System.Collections.Generic;
 
 namespace NetFxStackCalculator
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
-            Stack<int> values = new Stack<int>();
+            var values = new Stack<int>();
 
-            foreach (string token in args)
+            foreach (var token in args)
             {
                 int value;
                 if (int.TryParse(token, out value))
@@ -18,8 +18,8 @@ namespace NetFxStackCalculator
                 }
                 else
                 {
-                    int right = values.Pop();
-                    int left = values.Pop();
+                    var right = values.Pop();
+                    var left = values.Pop();
 
                     switch (token)
                     {
@@ -30,16 +30,16 @@ namespace NetFxStackCalculator
                             values.Push(left - right);
                             break;
                         case "*":
-                            values.Push(left * right);
+                            values.Push(left*right);
                             break;
                         case "/":
-                            values.Push(left / right);
+                            values.Push(left/right);
                             break;
                         case "%":
-                            values.Push(left % right);
+                            values.Push(left%right);
                             break;
                         default:
-                            throw new ArgumentException(string.Format("Unrecognized token: {0}", token));
+                            throw new ArgumentException($"Unrecognized token: {token}");
                     }
                 }
             }
