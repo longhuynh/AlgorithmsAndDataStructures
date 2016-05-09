@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace Set
@@ -17,6 +18,18 @@ namespace Set
             AddRange(items);
         }
 
+        public int Count => items.Count;
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            return items.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return items.GetEnumerator();
+        }
+
         public void Add(T item)
         {
             if (Contains(item))
@@ -29,7 +42,7 @@ namespace Set
 
         public void AddRange(IEnumerable<T> enumerables)
         {
-            foreach (T item in enumerables)
+            foreach (var item in enumerables)
             {
                 Add(item);
             }
@@ -45,7 +58,7 @@ namespace Set
 
         private void AddRangeSkipDuplicates(IEnumerable<T> enumerables)
         {
-            foreach (T item in enumerables)
+            foreach (var item in enumerables)
             {
                 AddSkipDuplicates(item);
             }
@@ -61,14 +74,9 @@ namespace Set
             return items.Contains(item);
         }
 
-        public int Count
-        {
-            get { return items.Count; }
-        }
-
         public Set<T> Union(Set<T> other)
         {
-            Set<T> result = new Set<T>(items);
+            var result = new Set<T>(items);
             result.AddRangeSkipDuplicates(other.items);
 
             return result;
@@ -76,9 +84,9 @@ namespace Set
 
         public Set<T> Intersection(Set<T> other)
         {
-            Set<T> result = new Set<T>();
+            var result = new Set<T>();
 
-            foreach (T item in items)
+            foreach (var item in items)
             {
                 if (other.items.Contains(item))
                 {
@@ -91,9 +99,9 @@ namespace Set
 
         public Set<T> Difference(Set<T> other)
         {
-            Set<T> result = new Set<T>(items);
+            var result = new Set<T>(items);
 
-            foreach (T item in other.items)
+            foreach (var item in other.items)
             {
                 result.Remove(item);
             }
@@ -103,20 +111,10 @@ namespace Set
 
         public Set<T> SymmetricDifference(Set<T> other)
         {
-            Set<T> intersection = Intersection(other);
-            Set<T> union = Union(other);
+            var intersection = Intersection(other);
+            var union = Union(other);
 
             return union.Difference(intersection);
-        }
-
-        public IEnumerator<T> GetEnumerator()
-        {
-            return items.GetEnumerator();
-        }
-
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
-        {
-            return items.GetEnumerator();
         }
     }
 }

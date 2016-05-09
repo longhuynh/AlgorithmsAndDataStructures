@@ -2,8 +2,8 @@
 {
     public class TestCaseData<T>
     {
+        public T[] Expected;
         public T[] Left;
         public T[] Right;
-        public T[] Expected;
     }
 }
