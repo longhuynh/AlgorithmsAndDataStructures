@@ -3,8 +3,12 @@ using System.Windows.Media;
 
 namespace WpfStackDemo
 {
-    class UndoAction
+    internal class UndoAction
     {
+        private readonly Brush brush;
+
+        private readonly Button button;
+
         public UndoAction(Button button)
         {
             this.button = button;
@@ -20,8 +24,5 @@ namespace WpfStackDemo
         {
             return string.Format("{0}: {1}", button.Content, brush);
         }
-
-        Button button;
-        Brush brush;
     }
 }

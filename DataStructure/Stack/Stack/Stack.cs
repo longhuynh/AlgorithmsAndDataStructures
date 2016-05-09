@@ -1,18 +1,42 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace Stack.List
 {
     /// <summary>
-    /// A Last In First Out (LIFO) collection implemented as a linked list.
+    ///     A Last In First Out (LIFO) collection implemented as a linked list.
     /// </summary>
     /// <typeparam name="T">The type of item contained in the stack</typeparam>
-    public class Stack<T> : System.Collections.Generic.IEnumerable<T>
+    public class Stack<T> : IEnumerable<T>
     {
-        private System.Collections.Generic.LinkedList<T> list = 
-            new System.Collections.Generic.LinkedList<T>();
+        private readonly LinkedList<T> list = new LinkedList<T>();
 
         /// <summary>
-        /// Adds the specified item to the stack
+        ///     The current number of items in the stack
+        /// </summary>
+        public int Count => list.Count;
+
+        /// <summary>
+        ///     Enumerates each item in the stack in LIFO order.  The stack remains unaltered.
+        /// </summary>
+        /// <returns>The LIFO enumerator</returns>
+        public IEnumerator<T> GetEnumerator()
+        {
+            return list.GetEnumerator();
+        }
+
+        /// <summary>
+        ///     Enumerates each item in the stack in LIFO order.  The stack remains unaltered.
+        /// </summary>
+        /// <returns>The LIFO enumerator</returns>
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return list.GetEnumerator();
+        }
+
+        /// <summary>
+        ///     Adds the specified item to the stack
         /// </summary>
         /// <param name="item">The item</param>
         public void Push(T item)
@@ -21,7 +45,7 @@ namespace Stack.List
         }
 
         /// <summary>
-        /// Removes and returns the top item from the stack
+        ///     Removes and returns the top item from the stack
         /// </summary>
         /// <returns>The top-most item in the stack</returns>
         public T Pop()
@@ -31,14 +55,14 @@ namespace Stack.List
                 throw new InvalidOperationException("The stack is empty");
             }
 
-            T value = list.First.Value;
+            var value = list.First.Value;
             list.RemoveFirst();
 
             return value;
         }
 
         /// <summary>
-        /// Returns the top item from the stack without removing it from the stack
+        ///     Returns the top item from the stack without removing it from the stack
         /// </summary>
         /// <returns>The top-most item in the stack</returns>
         public T Peek()
@@ -52,40 +76,11 @@ namespace Stack.List
         }
 
         /// <summary>
-        /// The current number of items in the stack
-        /// </summary>
-        public int Count
-        {
-            get
-            {
-                return list.Count;
-            }
-        }
-
-        /// <summary>
-        /// Removes all items from the stack
+        ///     Removes all items from the stack
         /// </summary>
         public void Clear()
         {
             list.Clear();
-        }
-
-        /// <summary>
-        /// Enumerates each item in the stack in LIFO order.  The stack remains unaltered.
-        /// </summary>
-        /// <returns>The LIFO enumerator</returns>
-        public System.Collections.Generic.IEnumerator<T> GetEnumerator()
-        {
-            return list.GetEnumerator();
-        }
-
-        /// <summary>
-        /// Enumerates each item in the stack in LIFO order.  The stack remains unaltered.
-        /// </summary>
-        /// <returns>The LIFO enumerator</returns>
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
-        {
-            return list.GetEnumerator();
         }
     }
 }
