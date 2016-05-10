@@ -15,7 +15,9 @@ namespace BinaryTree
         }
 
         public BinaryTreeNode<TNode> Left { get; set; }
+
         public BinaryTreeNode<TNode> Right { get; set; }
+
         public TNode Value { get; }
 
         /// <summary>

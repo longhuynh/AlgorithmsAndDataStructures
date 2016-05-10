@@ -11,8 +11,7 @@ namespace PriorityQueue
     public class PriorityQueue<T> : IEnumerable<T>
         where T : IComparable<T>
     {
-        private readonly LinkedList<T> items =
-            new LinkedList<T>();
+        private readonly LinkedList<T> items = new LinkedList<T>();
 
         /// <summary>
         ///     The number of items in the queue

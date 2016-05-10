@@ -14,8 +14,6 @@ namespace Queue.Array
         private int head;
         private T[] items = new T[0];
 
-        // the number of items in the queue
-
         // the index of the last (newest) item in the queue
         private int tail = -1;
 
