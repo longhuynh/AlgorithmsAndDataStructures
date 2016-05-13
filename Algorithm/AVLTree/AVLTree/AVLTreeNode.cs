@@ -31,12 +31,7 @@ namespace AVLTree
                     return TreeState.LeftHeavy;
                 }
 
-                if (RightHeight - LeftHeight > 1)
-                {
-                    return TreeState.RightHeavy;
-                }
-
-                return TreeState.Balanced;
+                return RightHeight - LeftHeight > 1 ? TreeState.RightHeavy : TreeState.Balanced;
             }
         }
 
