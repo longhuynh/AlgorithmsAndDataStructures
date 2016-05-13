@@ -96,7 +96,7 @@
   <ItemGroup>
     <ProjectReference Include="..\StringSearching\StringSearching.csproj">
       <Project>{5548381E-592E-44DA-84F5-EBF4774C7D0E}</Project>
-      <Name>StringSearching %28StringSearching\StringSearching%29</Name>
+      <Name>StringSearching</Name>
     </ProjectReference>
     <ProjectReference Include="..\Tracker\Tracker.csproj">
       <Project>{4695BA37-9807-4265-BAAF-E9D1404F8408}</Project>

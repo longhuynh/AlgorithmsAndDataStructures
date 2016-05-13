@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{496AA9EB-A69F-4E51-8D3B-6DA7B7E1262E}</ProjectGuid>
+    <ProjectGuid>{48234127-DF15-4107-B2D5-265C516C1905}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>StringSearchingTests</RootNamespace>
-    <AssemblyName>StringSearchingTests</AssemblyName>
+    <RootNamespace>HashTable</RootNamespace>
+    <AssemblyName>HashTable</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,25 +31,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="nunit.framework, Version=2.5.10.11092, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
-      <HintPath>..\nunit\nunit.framework.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="StringSearchingTests.cs" />
+    <Compile Include="HashTable.cs" />
+    <Compile Include="HashTableArray.cs" />
+    <Compile Include="HashTableArrayNode.cs" />
+    <Compile Include="HashTableNodePair.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\StringSearching\StringSearching.csproj">
-      <Project>{5548381E-592E-44DA-84F5-EBF4774C7D0E}</Project>
-      <Name>StringSearching</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Tracker\Tracker.csproj">
-      <Project>{4695BA37-9807-4265-BAAF-E9D1404F8408}</Project>
-      <Name>Tracker</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
