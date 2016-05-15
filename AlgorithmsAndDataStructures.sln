@@ -97,6 +97,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HashTable", "DataStructure\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HashTableTests", "DataStructure\HashTable\HashTableTests\HashTableTests.csproj", "{AF99AC4F-F4CF-4DDA-9896-B31F601A63ED}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StringHashingSamples", "DataStructure\HashTable\StringHashingSamples\StringHashingSamples.csproj", "{F27FB4AE-04F9-447F-BD5D-40B80653AFBF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -369,6 +371,12 @@ Global
 		{AF99AC4F-F4CF-4DDA-9896-B31F601A63ED}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AF99AC4F-F4CF-4DDA-9896-B31F601A63ED}.Release|x86.ActiveCfg = Release|Any CPU
 		{AF99AC4F-F4CF-4DDA-9896-B31F601A63ED}.Release|x86.Build.0 = Release|Any CPU
+		{F27FB4AE-04F9-447F-BD5D-40B80653AFBF}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{F27FB4AE-04F9-447F-BD5D-40B80653AFBF}.Debug|x86.ActiveCfg = Debug|x86
+		{F27FB4AE-04F9-447F-BD5D-40B80653AFBF}.Debug|x86.Build.0 = Debug|x86
+		{F27FB4AE-04F9-447F-BD5D-40B80653AFBF}.Release|Any CPU.ActiveCfg = Release|x86
+		{F27FB4AE-04F9-447F-BD5D-40B80653AFBF}.Release|x86.ActiveCfg = Release|x86
+		{F27FB4AE-04F9-447F-BD5D-40B80653AFBF}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -419,5 +427,6 @@ Global
 		{D44F63F1-D645-4704-8889-FC115F0B938F} = {791A576A-55BD-4C5B-B24C-35E6A1B6B06F}
 		{48234127-DF15-4107-B2D5-265C516C1905} = {D44F63F1-D645-4704-8889-FC115F0B938F}
 		{AF99AC4F-F4CF-4DDA-9896-B31F601A63ED} = {D44F63F1-D645-4704-8889-FC115F0B938F}
+		{F27FB4AE-04F9-447F-BD5D-40B80653AFBF} = {D44F63F1-D645-4704-8889-FC115F0B938F}
 	EndGlobalSection
 EndGlobal
