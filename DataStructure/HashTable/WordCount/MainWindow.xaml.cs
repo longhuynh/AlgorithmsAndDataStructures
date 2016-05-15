@@ -20,7 +20,6 @@ namespace WordCount
         public MainWindow()
         {
             WordCountCollection = new ObservableCollection<WordCountData>();
-
             InitializeComponent();
         }
 
@@ -88,10 +87,12 @@ namespace WordCount
 
         private string GetFileName()
         {
-            var fileDialog = new OpenFileDialog();
-            fileDialog.FileName = "*";
-            fileDialog.DefaultExt = ".txt";
-            fileDialog.Filter = "Text documents (.txt)|*.txt"; // Filter files by extension
+            var fileDialog = new OpenFileDialog
+            {
+                FileName = "*",
+                DefaultExt = ".txt",
+                Filter = "Text documents (.txt)|*.txt" // Filter files by extension
+            };
 
             // Show open file dialog box
             var result = fileDialog.ShowDialog();
@@ -124,14 +125,7 @@ namespace WordCount
                     }
                     else
                     {
-                        if (lastDirection == ListSortDirection.Ascending)
-                        {
-                            direction = ListSortDirection.Descending;
-                        }
-                        else
-                        {
-                            direction = ListSortDirection.Ascending;
-                        }
+                        direction = lastDirection == ListSortDirection.Ascending ? ListSortDirection.Descending : ListSortDirection.Ascending;
                     }
 
                     var header = headerClicked.Column.Header as string;
